@@ -6,13 +6,13 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
+const todoRoutes = require('./routes/todos.js');
+
 app.get('/', (req, res) => {
-  res.send('hello from express!');
+  res.send('hello from root route!');
 });
 
-app.get('/happy', (req, res) => {
-  res.send('😁');
-});
+app.use('/api/todos', todoRoutes);
 
 app.listen(port, () => {
   console.log(`app is running on ${port}`);
